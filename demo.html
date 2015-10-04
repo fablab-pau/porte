@@ -1,0 +1,44 @@
+<html>
+<style>
+
+    body,html {
+        background-color: black;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 50px;
+        height: 100%;
+    }
+    body.open {
+        background-color: yellow;
+        /* Firefox */
+        -moz-transition: all 3s ease-in;
+        /* WebKit */
+        -webkit-transition: all 3s ease-in;
+        /* Opera */
+        -o-transition: all 3s ease-in;
+        /* Standard */
+        transition: all 3s ease-in;
+    }
+    h1 {
+        display: block;
+        text-align: center ;
+        width: 100%;
+        padding-top: 25%;
+    }
+</style>
+<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<script>
+    var db = new Firebase("https://dazzling-inferno-8493.firebaseio.com");
+    this.db.on('value', function (dataSnapshot) {
+        var isOpen = dataSnapshot.val().open;
+        $('body').removeClass('open');
+        if(isOpen === true) {
+            $('body').addClass('open');
+        }
+    });
+</script>
+<body>
+<h1>Le fablab est ouvert</h1>
+</body>
+</html>
